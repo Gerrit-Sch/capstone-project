@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+import LandingPage from "./pages/LandingPage";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <h1> SuperRentalHomes </h1>
+      <LandingPage />
+    </AppContainer>
   );
 }
 
-export default App;
+const AppContainer = styled.div`
+  display: grid;
+  place-items: center;
+  align-content: start;
+  gap: 20px;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: orange;
+`;

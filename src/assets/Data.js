@@ -1,4 +1,4 @@
-const sampleDate = [
+const sampleData = [
   {
     "realestates.apartmentRent": {
       title:
