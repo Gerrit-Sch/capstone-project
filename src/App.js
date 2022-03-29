@@ -1,13 +1,18 @@
 import styled from "styled-components";
 import LandingPage from "./pages/LandingPage";
+import { useState } from "react";
 
 export default function App() {
+  const [areaCode, setAreaCode] = useState("");
   return (
     <AppContainer>
       <h1> SuperRentalHomes </h1>
-      <LandingPage />
+      <LandingPage onSubmit={handleAreaCodeInput} />
     </AppContainer>
   );
+  function handleAreaCodeInput(areaCode) {
+    setAreaCode(areaCode);
+  }
 }
 
 const AppContainer = styled.div`

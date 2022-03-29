@@ -1,21 +1,47 @@
 import styled from "styled-components";
+import { useState } from "react";
 
-export default function LandingPage() {
+export default function LandingPage({ onSubmit }) {
+  const [areaCode, setAreaCode] = useState("");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const inputElement = form.elements["areaCode"];
+    onSubmit(inputElement.value);
+    form.reset();
+  }
+
+  const handleOnChange = (event) => {
+    const { name, value } = event.target;
+    setAreaCode({
+      ...areaCode,
+      [name]: value,
+    });
+    console.log(areaCode);
+  };
+
   return (
-    <Form autoComplete="off" aria-label="entry-form-area-code">
-      <label htmlFor="area-code"></label>
+    <Form
+      autoComplete="off"
+      aria-label="entry-form-area-code"
+      onSubmit={handleSubmit}
+    >
+      <label htmlFor="areaCode"></label>
       <Input
         name="areaCode"
-        id="area-code"
+        id="areaCode"
         type="text"
         inputmode="numeric"
         placeholder="Insert 5-digit area code"
+        onChange={handleOnChange}
         required
       />
       <Button>Find a place to live!</Button>
     </Form>
   );
 }
+
 const Input = styled.input`
   border: none;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
