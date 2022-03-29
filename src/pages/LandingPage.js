@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
+import sampleData from "../assets/Data";
+//import useNavigate from "
 
 export default function LandingPage({ onSubmit }) {
   const [areaCode, setAreaCode] = useState("");
@@ -9,7 +11,9 @@ export default function LandingPage({ onSubmit }) {
     const form = event.target;
     const inputElement = form.elements["areaCode"];
     onSubmit(inputElement.value);
+
     form.reset();
+    //navigate
   }
 
   const handleOnChange = (event) => {
@@ -18,27 +22,40 @@ export default function LandingPage({ onSubmit }) {
       ...areaCode,
       [name]: value,
     });
-    console.log(areaCode);
   };
+  console.log(areaCode);
 
   return (
-    <Form
-      autoComplete="off"
-      aria-label="entry-form-area-code"
-      onSubmit={handleSubmit}
-    >
-      <label htmlFor="areaCode"></label>
-      <Input
-        name="areaCode"
-        id="areaCode"
-        type="text"
-        inputmode="numeric"
-        placeholder="Insert 5-digit area code"
-        onChange={handleOnChange}
-        required
-      />
-      <Button>Find a place to live!</Button>
-    </Form>
+    <>
+      <Form
+        autoComplete="off"
+        aria-label="entry-form-area-code"
+        onSubmit={handleSubmit}
+      >
+        <label htmlFor="areaCode"></label>
+        <Input
+          name="areaCode"
+          id="areaCode"
+          type="text"
+          inputmode="numeric"
+          placeholder="Insert 5-digit area code"
+          onChange={handleOnChange}
+          required
+        />
+        <Button>Find a place to live!</Button>
+      </Form>
+      <ul>
+        {sampleData.map((listing) => (
+          <li>
+            {listing["realestates.apartmentRent"].title}
+            {listing["realestates.apartmentRent"].address.street}
+            {listing["realestates.apartmentRent"].address.houseNumber}
+            {listing["realestates.apartmentRent"].address.postcode}
+            {listing["realestates.apartmentRent"].address.city}
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
 
