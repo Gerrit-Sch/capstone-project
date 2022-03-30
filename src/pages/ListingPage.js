@@ -5,7 +5,7 @@ export default function ListingPage() {
   return (
     <CardList>
       {sampleData.map((listing, index) => (
-        <Card key={(index, listing)}>
+        <Listing key={(index, listing)}>
           <h2>{listing["realestates.apartmentRent"].title}</h2>
           <p>
             {" "}
@@ -15,7 +15,7 @@ export default function ListingPage() {
 
           <p> {listing["realestates.apartmentRent"].address.postcode}</p>
           <p>{listing["realestates.apartmentRent"].address.city}</p>
-        </Card>
+        </Listing>
       ))}
     </CardList>
   );
@@ -30,10 +30,12 @@ const CardList = styled.ul`
   width: 100%;
 `;
 
-const Card = styled.li`
+const Listing = styled.li`
   background: white;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   height: auto;
   width: auto;
   border-radius: 8px;
 `;
+
+export { Listing };

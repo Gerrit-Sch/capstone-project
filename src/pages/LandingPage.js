@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import { useState } from "react";
 import Button from "../components/Button";
+import sampleData from "../assets/Data";
+import {Listing} from ListingPage;
 
 import Input from "../components/Input";
 import { useNavigate } from "react-router-dom";
+
 
 export default function LandingPage({ onSubmit }) {
   const [areaCode, setAreaCode] = useState("");
@@ -11,12 +14,29 @@ export default function LandingPage({ onSubmit }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    const postCodeOfListing = sampleData.map((listing) => listing["realestates.apartmentRent"].address.postcode);
     const form = event.target;
     const inputElement = form.elements["areaCode"];
     onSubmit(inputElement.value);
+    
 
     form.reset();
-    navigate("/listings");
+
+    console.log(
+      sampleData.map(
+        (listing) => listing["realestates.apartmentRent"].address.postcode
+      )
+    );
+    ;
+  
+   return(
+
+    inputElement.value === postCodeOfListing
+    
+      ?  {Listing} && navigate("/listings")
+      : <p>"No matches for this area code"</p> && navigate("/listings")
+
+   )
   }
 
   const handleOnChange = (event) => {
@@ -50,7 +70,6 @@ export default function LandingPage({ onSubmit }) {
     </>
   );
 }
-
 const Form = styled.form`
   display: flex;
   flex-direction: column;
