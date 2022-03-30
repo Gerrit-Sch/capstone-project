@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { useState } from "react";
 import Button from "../components/Button";
-import sampleData from "../assets/Data";
+
 import Input from "../components/Input";
-//import useNavigate from "
+import { useNavigate } from "react-router-dom";
 
 export default function LandingPage({ onSubmit }) {
   const [areaCode, setAreaCode] = useState("");
+  const navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -15,7 +16,7 @@ export default function LandingPage({ onSubmit }) {
     onSubmit(inputElement.value);
 
     form.reset();
-    //navigate
+    navigate("/listings");
   }
 
   const handleOnChange = (event) => {
@@ -46,11 +47,6 @@ export default function LandingPage({ onSubmit }) {
         />
         <Button>Find your place to live!</Button>
       </Form>
-      <ul>
-        {sampleData.map((listing) => (
-          <li>{listing["realestates.apartmentRent"].title}</li>
-        ))}
-      </ul>
     </>
   );
 }

@@ -1,34 +1,39 @@
-/*import sampleData from "../assets/Data";
-//import {nanoid} from nanoid;
+import sampleData from "../assets/Data";
+import styled from "styled-components";
 
 export default function ListingPage() {
-    console.log(sampleData.map(listing => listing[0].realestates.apartmentRent.postcode)
-    return (
-      <ul role="list" aria-label="listings-list">
-        {sampleData.map((listing) => {
-          return (
-            <li key={nanoid()} >
+  return (
+    <CardList>
+      {sampleData.map((listing, index) => (
+        <Card key={(index, listing)}>
+          <h2>{listing["realestates.apartmentRent"].title}</h2>
+          <p>
+            {" "}
+            {listing["realestates.apartmentRent"].address.street}{" "}
+            {listing["realestates.apartmentRent"].address.houseNumber}
+          </p>
 
-              
-              </li>
-          );
-        })}
-        
-      </ul>  
+          <p> {listing["realestates.apartmentRent"].address.postcode}</p>
+          <p>{listing["realestates.apartmentRent"].address.city}</p>
+        </Card>
+      ))}
+    </CardList>
+  );
+}
 
+const CardList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+`;
 
-))
-
-    
-
-    
-   export default function PastTripCard() {
-        return (
-          <PastTripCards role="list" aria-label="past-trips">
-            {pastTripList.map(({ country, city, _id }) => {
-              return <PastTripList country={country} city={city} key={_id} />;
-            })}
-          </PastTripCards>
-        );
-      } 
-      */
+const Card = styled.li`
+  background: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  height: auto;
+  width: auto;
+  border-radius: 8px;
+`;

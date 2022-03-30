@@ -9,6 +9,7 @@ export default function Input({ handleOnChange }) {
       inputmode="numeric"
       placeholder="Insert 5-digit area code"
       onChange={handleOnChange}
+      maxlength="5"
       required
     />
   );
