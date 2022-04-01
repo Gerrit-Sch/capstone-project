@@ -1,22 +1,30 @@
 import sampleData from "../assets/Data";
 import styled from "styled-components";
 
-export default function ListingPage() {
+export default function ListingPage({ areaCode }) {
   return (
     <CardList>
-      {sampleData.map((listing, index) => (
-        <Listing key={(index, listing)}>
-          <h2>{listing["realestates.apartmentRent"].title}</h2>
-          <p>
-            {" "}
-            {listing["realestates.apartmentRent"].address.street}{" "}
-            {listing["realestates.apartmentRent"].address.houseNumber}
-          </p>
+      {sampleData.map((listing, index) => {
+        if (
+          listing["realestates.apartmentRent"].address.postcode === areaCode
+        ) {
+          return (
+            <Listing key={(index, listing)}>
+              <h2>{listing["realestates.apartmentRent"].title}</h2>
+              <p>
+                {" "}
+                {listing["realestates.apartmentRent"].address.street}{" "}
+                {listing["realestates.apartmentRent"].address.houseNumber}
+              </p>
 
-          <p> {listing["realestates.apartmentRent"].address.postcode}</p>
-          <p>{listing["realestates.apartmentRent"].address.city}</p>
-        </Listing>
-      ))}
+              <p> {listing["realestates.apartmentRent"].address.postcode}</p>
+              <p>{listing["realestates.apartmentRent"].address.city}</p>
+            </Listing>
+          );
+        } else {
+          return <p>No matches for this area code. Please try againg!</p>;
+        }
+      })}
     </CardList>
   );
 }
@@ -37,5 +45,3 @@ const Listing = styled.li`
   width: auto;
   border-radius: 8px;
 `;
-
-export { Listing };

@@ -2,10 +2,11 @@ import styled from "styled-components";
 import LandingPage from "./pages/LandingPage";
 import ListingPage from "./pages/ListingPage";
 import { useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 export default function App() {
   const [areaCode, setAreaCode] = useState("");
+  console.log(areaCode);
   return (
     <AppContainer>
       <h1> SuperRentalHomes </h1>
@@ -14,7 +15,7 @@ export default function App() {
           path="/"
           element={<LandingPage onSubmit={handleAreaCodeInput} />}
         />
-        <Route path="/listings" element={<ListingPage />} />
+        <Route path="/listings" element={<ListingPage areaCode={areaCode} />} />
       </Routes>
     </AppContainer>
   );
