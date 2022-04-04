@@ -1,11 +1,12 @@
 import sampleData from "../assets/Data";
 import styled from "styled-components";
 
-export default function ListingPage({ areaCode }) {
+export default function ListingPage({ areaCode, handleBookmarkClick }) {
   const postcodes = sampleData.map(
     (listing) => listing["realestates.apartmentRent"].address.postcode
   );
   const match = postcodes.includes(areaCode);
+
   return (
     <CardList>
       {sampleData.map((listing, index) => {
@@ -15,7 +16,7 @@ export default function ListingPage({ areaCode }) {
           return (
             <Listing key={(index, listing)}>
               <h2>{listing["realestates.apartmentRent"].title}</h2>
-              <Bookmark>bookmark</Bookmark>
+              <Bookmark onClick={handleBookmarkClick}>bookmark</Bookmark>
               <p>
                 {" "}
                 {listing["realestates.apartmentRent"].address.street}{" "}
@@ -59,4 +60,5 @@ const Bookmark = styled.button`
   position: absolute;
   right: 50px;
   top: -10px;
+  background-color: ${({ active }) => (active ? "red" : "transparent")};
 `;

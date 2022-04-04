@@ -6,6 +6,8 @@ import { Routes, Route } from "react-router-dom";
 
 export default function App() {
   const [areaCode, setAreaCode] = useState("");
+  const [toggle, setToggle] = useState(false);
+
   console.log(areaCode);
   return (
     <AppContainer>
@@ -15,12 +17,23 @@ export default function App() {
           path="/"
           element={<LandingPage onSubmit={handleAreaCodeInput} />}
         />
-        <Route path="/listings" element={<ListingPage areaCode={areaCode} />} />
+        <Route
+          path="/listings"
+          element={
+            <ListingPage
+              areaCode={areaCode}
+              handleBookmarkClick={toggleBookmark}
+            />
+          }
+        />
       </Routes>
     </AppContainer>
   );
   function handleAreaCodeInput(areaCode) {
     setAreaCode(areaCode);
+  }
+  function toggleBookmark() {
+    setToggle(!toggle);
   }
 }
 
