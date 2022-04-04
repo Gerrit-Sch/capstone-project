@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { useState } from "react";
+
 import Button from "../components/Button";
-import sampleData from "../assets/Data";
 
 import Input from "../components/Input";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +17,7 @@ export default function LandingPage({ onSubmit }) {
     onSubmit(inputElement.value);
 
     form.reset();
+
     navigate("/listings");
   }
 
@@ -31,10 +31,12 @@ export default function LandingPage({ onSubmit }) {
         <label htmlFor="areaCode"></label>
         <Input
           name="areaCode"
+          maxlength="10"
           id="areaCode"
-          type="text"
+          type="number"
           inputmode="numeric"
           placeholder="Insert 5-digit area code"
+          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')"
           onChange={(event) => console.log(event.target.value)}
           required
         />
