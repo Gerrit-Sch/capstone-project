@@ -4,13 +4,17 @@ import ListingPage from "./pages/ListingPage";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import sampleData from "./assets/Data";
+import { nanoid } from "nanoid";
+import BookmarkPage from "./pages/BookmarkPage";
+
+const updatedData = sampleData.map((listing) => {
+  return { ...listing, isBookmarked: false, id: nanoid() };
+});
 
 export default function App() {
   const [areaCode, setAreaCode] = useState("");
-  const [toggle, setToggle] = useState(false);
-  const [sampleData, setSampleData] = useState(sampleData);
+  const [data, setData] = useState(updatedData);
 
-  console.log(areaCode);
   return (
     <AppContainer>
       <h1> SuperRentalHomes </h1>
@@ -25,19 +29,30 @@ export default function App() {
             <ListingPage
               areaCode={areaCode}
               handleBookmarkClick={toggleBookmark}
+              data={data}
             />
           }
         />
+        <Route path="/bookmarked" element={<BookmarkPage />} />
       </Routes>
     </AppContainer>
   );
   function handleAreaCodeInput(areaCode) {
     setAreaCode(areaCode);
   }
-  function toggleBookmark() {
-    setToggle(!toggle);
+  function toggleBookmark(id) {
+    setData(
+      data.map((listing) => {
+        if (listing.id === id) {
+          return { ...listing, isBookmarked: !listing.isBookmarked };
+        }
+        return listing;
+      })
+    );
   }
 }
+
+export { updatedData };
 
 const AppContainer = styled.div`
   display: grid;
