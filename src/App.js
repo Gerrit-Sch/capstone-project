@@ -6,7 +6,6 @@ import { Routes, Route } from "react-router-dom";
 
 export default function App() {
   const [areaCode, setAreaCode] = useState("");
-  console.log(areaCode);
   return (
     <AppContainer>
       <h1> SuperRentalHomes </h1>
