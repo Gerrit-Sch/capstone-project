@@ -3,10 +3,12 @@ import LandingPage from "./pages/LandingPage";
 import ListingPage from "./pages/ListingPage";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import sampleData from "./assets/Data";
 
 export default function App() {
   const [areaCode, setAreaCode] = useState("");
   const [toggle, setToggle] = useState(false);
+  const [sampleData, setSampleData] = useState(sampleData);
 
   console.log(areaCode);
   return (
