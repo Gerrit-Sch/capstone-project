@@ -33,8 +33,27 @@ export default function App() {
             />
           }
         />
-        <Route path="/bookmarked" element={<BookmarkPage />} />
+        <Route path="/bookmarked" element={<BookmarkPage />} data={data} />
       </Routes>
+      <footer>
+        <nav>
+          <a href="/">
+            <button>
+              <i className="fa fa-search"></i>
+            </button>
+          </a>
+          <a href="/bookmarked">
+            <button>
+              <i className="fa fa-bookmark"></i>
+            </button>
+          </a>
+          <a href="/listings">
+            <button>
+              <i className="fa fa-home"></i>
+            </button>
+          </a>
+        </nav>
+      </footer>
     </AppContainer>
   );
   function handleAreaCodeInput(areaCode) {
@@ -51,8 +70,6 @@ export default function App() {
     );
   }
 }
-
-export { updatedData };
 
 const AppContainer = styled.div`
   display: grid;
