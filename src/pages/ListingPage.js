@@ -1,17 +1,18 @@
 import styled from "styled-components";
+import sampleData from "../assets/Data";
 
-export default function ListingPage({ areaCode, handleBookmarkClick, data }) {
-  const postcodes = data.map(
-    (listing) => listing["realestates.apartmentRent"].address.postcode
+export default function ListingPage({ areaCode, handleBookmarkClick }) {
+  const filteredListings = sampleData.filter(
+    (listing) =>
+      listing["realestates.apartmentRent"].address.postcode === areaCode
   );
-  const match = postcodes.includes(areaCode);
+
+  console.log(filteredListings);
 
   return (
     <CardList>
-      {data.map((listing) => {
-        if (
-          listing["realestates.apartmentRent"].address.postcode === areaCode
-        ) {
+      {filteredListings.length > 0 ? (
+        filteredListings.map((listing) => {
           return (
             <Listing key={listing.id}>
               <h2>{listing["realestates.apartmentRent"].title}</h2>
@@ -22,19 +23,15 @@ export default function ListingPage({ areaCode, handleBookmarkClick, data }) {
                 bookmark
               </Bookmark>
               <p>
-                {" "}
                 {listing["realestates.apartmentRent"].address.street}{" "}
                 {listing["realestates.apartmentRent"].address.houseNumber}
               </p>
 
-              <p> {listing["realestates.apartmentRent"].address.postcode}</p>
+              <p>{listing["realestates.apartmentRent"].address.postcode}</p>
               <p>{listing["realestates.apartmentRent"].address.city}</p>
             </Listing>
           );
-        }
-      })}
-      {match ? (
-        ""
+        })
       ) : (
         <p>Unfortunately, there are no matches. Please try again!</p>
       )}

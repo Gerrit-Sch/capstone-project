@@ -33,7 +33,7 @@ export default function App() {
             />
           }
         />
-        <Route path="/bookmarked" element={<BookmarkPage />} data={data} />
+        <Route path="/bookmarked" element={<BookmarkPage />} />
       </Routes>
       <footer>
         <nav>
