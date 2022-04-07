@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import sampleData from "../assets/Data";
 
-export default function ListingPage({ areaCode, handleBookmarkClick }) {
-  const filteredListings = sampleData.filter(
+export default function ListingPage({ areaCode, handleBookmarkClick, data }) {
+  const filteredListings = data.filter(
     (listing) =>
       listing["realestates.apartmentRent"].address.postcode === areaCode
   );

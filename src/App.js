@@ -2,7 +2,7 @@ import styled from "styled-components";
 import LandingPage from "./pages/LandingPage";
 import ListingPage from "./pages/ListingPage";
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import sampleData from "./assets/Data";
 import { nanoid } from "nanoid";
 import BookmarkPage from "./pages/BookmarkPage";
@@ -33,25 +33,26 @@ export default function App() {
             />
           }
         />
-        <Route path="/bookmarked" element={<BookmarkPage />} />
+        <Route
+          path="/bookmarked"
+          element={
+            <BookmarkPage data={data} handleBookmarkClick={toggleBookmark} />
+          }
+        />
       </Routes>
       <footer>
         <nav>
-          <a href="/">
-            <button>
-              <i className="fa fa-search"></i>
-            </button>
-          </a>
-          <a href="/bookmarked">
-            <button>
-              <i className="fa fa-bookmark"></i>
-            </button>
-          </a>
-          <a href="/listings">
-            <button>
-              <i className="fa fa-home"></i>
-            </button>
-          </a>
+          <Link to="/">
+            <i className="fa fa-search"></i>
+          </Link>
+
+          <Link to="bookmarked/">
+            <i className="fa fa-bookmark"></i>
+          </Link>
+
+          <Link to="/listings">
+            <i className="fa fa-home"></i>
+          </Link>
         </nav>
       </footer>
     </AppContainer>

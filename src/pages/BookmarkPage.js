@@ -1,10 +1,9 @@
-import sampleData from "../assets/Data";
 import { CardList } from "./ListingPage";
 import { Listing } from "./ListingPage";
 import { Bookmark } from "./ListingPage";
 
-export default function BookmarkPage() {
-  const filteredBookmarkedListings = sampleData.filter(
+export default function BookmarkPage({ data, handleBookmarkClick }) {
+  const filteredBookmarkedListings = data.filter(
     (listing) => listing.isBookmarked === true
   );
 
@@ -19,7 +18,7 @@ export default function BookmarkPage() {
               <h2>{listing["realestates.apartmentRent"].title}</h2>
               <Bookmark
                 active={listing.isBookmarked}
-                //onClick={() => handleBookmarkClick(listing.id)}
+                onClick={() => handleBookmarkClick(listing.id)}
               >
                 bookmark
               </Bookmark>
