@@ -12,8 +12,9 @@ const updatedData = sampleData.map((listing) => {
 });
 
 export default function App() {
-  const [areaCode, setAreaCode] = useState("");
+
   const [data, setData] = useState(updatedData);
+
 
   return (
     <AppContainer>
