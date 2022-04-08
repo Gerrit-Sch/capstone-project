@@ -1,5 +1,6 @@
 /** @module is24 */
 var oauth = require("oauth");
+w;
 var qs = require("qs");
 var IS24 = function (options) {
   if (!(this instanceof IS24)) return new IS24(options);
