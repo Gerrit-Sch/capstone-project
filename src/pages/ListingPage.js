@@ -6,8 +6,6 @@ export default function ListingPage({ areaCode, handleBookmarkClick, data }) {
       listing["realestates.apartmentRent"].address.postcode === areaCode
   );
 
-  console.log(filteredListings);
-
   return (
     <CardList>
       {filteredListings.length > 0 ? (

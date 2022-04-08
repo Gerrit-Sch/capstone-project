@@ -7,8 +7,6 @@ export default function BookmarkPage({ data, handleBookmarkClick }) {
     (listing) => listing.isBookmarked === true
   );
 
-  console.log(filteredBookmarkedListings);
-
   return (
     <CardList>
       {filteredBookmarkedListings.length > 0 ? (
