@@ -1,35 +1,34 @@
-import sampleData from "../assets/Data";
 import styled from "styled-components";
 
-export default function ListingPage({ areaCode }) {
-  const postcodes = sampleData.map(
-    (listing) => listing["realestates.apartmentRent"].address.postcode
+export default function ListingPage({ areaCode, handleBookmarkClick, data }) {
+  const filteredListings = data.filter(
+    (listing) =>
+      listing["realestates.apartmentRent"].address.postcode === areaCode
   );
-  const match = postcodes.includes(areaCode);
+
   return (
     <CardList>
-      {sampleData.map((listing, index) => {
-        if (
-          listing["realestates.apartmentRent"].address.postcode === areaCode
-        ) {
+      {filteredListings.length > 0 ? (
+        filteredListings.map((listing) => {
           return (
-            <Listing key={(index, listing)}>
+            <Listing key={listing.id}>
               <h2>{listing["realestates.apartmentRent"].title}</h2>
-              <Bookmark>bookmark</Bookmark>
+              <Bookmark
+                active={listing.isBookmarked}
+                onClick={() => handleBookmarkClick(listing.id)}
+              >
+                bookmark
+              </Bookmark>
               <p>
-                {" "}
                 {listing["realestates.apartmentRent"].address.street}{" "}
                 {listing["realestates.apartmentRent"].address.houseNumber}
               </p>
 
-              <p> {listing["realestates.apartmentRent"].address.postcode}</p>
+              <p>{listing["realestates.apartmentRent"].address.postcode}</p>
               <p>{listing["realestates.apartmentRent"].address.city}</p>
             </Listing>
           );
-        }
-      })}
-      {match ? (
-        ""
+        })
       ) : (
         <p>Unfortunately, there are no matches. Please try again!</p>
       )}
@@ -59,4 +58,7 @@ const Bookmark = styled.button`
   position: absolute;
   right: 50px;
   top: -10px;
+  background-color: ${({ active }) => (active ? "red" : "transparent")};
 `;
+
+export { CardList, Listing, Bookmark };
