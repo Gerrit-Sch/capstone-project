@@ -31,8 +31,7 @@ export default function LandingPage({ onSubmit }) {
         <label htmlFor="areaCode"></label>
         <Input
           name="areaCode"
-          min="5"
-          max="5"
+          maxlength="10"
           id="areaCode"
           type="number"
           inputmode="numeric"
