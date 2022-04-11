@@ -38,7 +38,7 @@ export default function LandingPage({ onSubmit }) {
           inputmode="numeric"
           placeholder="Insert 5-digit area code"
           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')"
-          onChange={(event) => console.log(event.target.value)}
+          onChange={(event) => event.target.value}
           required
         />
         <Button>Find your place to live!</Button>

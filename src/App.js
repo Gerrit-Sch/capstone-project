@@ -6,6 +6,9 @@ import { Routes, Route, Link } from "react-router-dom";
 import sampleData from "./assets/Data";
 import { nanoid } from "nanoid";
 import BookmarkPage from "./pages/BookmarkPage";
+import AddPage from "./pages/AddPage";
+import MyListingsPage from "./pages/MyListingsPage";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 const updatedData = sampleData.map((listing) => {
   return { ...listing, isBookmarked: false, id: nanoid() };
@@ -14,6 +17,10 @@ const updatedData = sampleData.map((listing) => {
 export default function App() {
   const [areaCode, setAreaCode] = useState("");
   const [data, setData] = useState(updatedData);
+  const [createdListings, setCreatedListings] = useLocalStorage(
+    "createdListings",
+    []
+  );
 
   return (
     <AppContainer>
@@ -39,6 +46,19 @@ export default function App() {
             <BookmarkPage data={data} handleBookmarkClick={toggleBookmark} />
           }
         />
+        <Route
+          path="/add"
+          element={<AddPage onCreateListing={createNewListing} />}
+        />
+        <Route
+          path="/mylistings"
+          element={
+            <MyListingsPage
+              createdListings={createdListings}
+              handleBookmarkClick={toggleBookmark2}
+            />
+          }
+        />
       </Routes>
       <footer>
         <nav>
@@ -52,6 +72,14 @@ export default function App() {
 
           <Link to="/listings">
             <i className="fa fa-home"></i>
+          </Link>
+
+          <Link to="/add">
+            <i className="fa fa-plus"></i>
+          </Link>
+
+          <Link to="/mylistings">
+            <i className="fa fa-newspaper"></i>
           </Link>
         </nav>
       </footer>
@@ -70,8 +98,20 @@ export default function App() {
       })
     );
   }
+  function toggleBookmark2(id) {
+    setCreatedListings(
+      createdListings.map((item) => {
+        if (item.id === id) {
+          return { ...item, isBookmarked: !item.isBookmarked };
+        }
+        return item;
+      })
+    );
+  }
+  function createNewListing(formData) {
+    setCreatedListings([...createdListings, formData]);
+  }
 }
-
 const AppContainer = styled.div`
   display: grid;
   place-items: center;
@@ -81,3 +121,5 @@ const AppContainer = styled.div`
   padding: 20px;
   background-color: orange;
 `;
+
+/* */

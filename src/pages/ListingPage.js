@@ -26,6 +26,8 @@ export default function ListingPage({ areaCode, handleBookmarkClick, data }) {
 
               <p>{listing["realestates.apartmentRent"].address.postcode}</p>
               <p>{listing["realestates.apartmentRent"].address.city}</p>
+              <p>Base rent: {listing.baseRent} € </p>
+              <p>Living space: {listing.livingSpace} m2</p>
             </Listing>
           );
         })
