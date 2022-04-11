@@ -1,19 +1,17 @@
 import { CardList, Listing, Bookmark } from "../pages/ListingPage";
-import { nanoid } from "nanoid";
 
 export default function MyListingsPage(
   { createdListings },
-  handleBookmarkClick,
-  isBookmarked
+  handleBookmarkClick
 ) {
   return (
     <CardList>
-      {createdListings.map((item, id) => (
-        <Listing isBookmarked={isBookmarked} key={id}>
+      {createdListings.map((item) => (
+        <Listing key={item._id}>
           <h2>{item.title}.</h2>
           <Bookmark
             active={item.isBookmarked}
-            onClick={() => handleBookmarkClick(item.id)}
+            onClick={() => handleBookmarkClick(item._id)}
           >
             bookmark
           </Bookmark>

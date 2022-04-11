@@ -11,6 +11,8 @@ export default function AddPage({ onCreateListing }) {
     setFormData({
       ...formData,
       [name]: value,
+      isBookmarked: false,
+      _id: nanoid(),
     });
   };
 

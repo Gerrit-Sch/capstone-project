@@ -21,7 +21,7 @@ export default function App() {
     "createdListings",
     []
   );
-
+  console.log(createdListings);
   return (
     <AppContainer>
       <h1> SuperRentalHomes </h1>
@@ -98,10 +98,11 @@ export default function App() {
       })
     );
   }
-  function toggleBookmark2(id) {
+
+  function toggleBookmark2(_id) {
     setCreatedListings(
       createdListings.map((item) => {
-        if (item.id === id) {
+        if (item._id === _id) {
           return { ...item, isBookmarked: !item.isBookmarked };
         }
         return item;
