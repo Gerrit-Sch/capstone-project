@@ -1,9 +1,9 @@
 import { CardList, Listing, Bookmark } from "../pages/ListingPage";
 
-export default function MyListingsPage(
-  { createdListings },
-  handleBookmarkClick
-) {
+export default function MyListingsPage({
+  createdListings,
+  handleBookmarkClick,
+}) {
   return (
     <CardList>
       {createdListings.map((item) => (

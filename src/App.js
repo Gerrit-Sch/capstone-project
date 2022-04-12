@@ -43,7 +43,11 @@ export default function App() {
         <Route
           path="/bookmarked"
           element={
-            <BookmarkPage data={data} handleBookmarkClick={toggleBookmark} />
+            <BookmarkPage
+              data={data}
+              handleBookmarkClick={toggleBookmark}
+              createdListings={createdListings}
+            />
           }
         />
         <Route
