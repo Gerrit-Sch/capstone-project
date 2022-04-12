@@ -10,18 +10,17 @@ import AddPage from "./pages/AddPage";
 import MyListingsPage from "./pages/MyListingsPage";
 import useLocalStorage from "./hooks/useLocalStorage";
 
-const updatedData = sampleData.map((listing) => {
-  return { ...listing, isBookmarked: false, id: nanoid() };
-});
-
 export default function App() {
+  const updatedData = sampleData.map((listing) => {
+    return { ...listing, isBookmarked: false, id: nanoid() };
+  });
   const [areaCode, setAreaCode] = useState("");
   const [data, setData] = useState(updatedData);
   const [createdListings, setCreatedListings] = useLocalStorage(
     "createdListings",
     []
   );
-  console.log(createdListings);
+  console.log(data);
   return (
     <AppContainer>
       <h1> SuperRentalHomes </h1>
@@ -115,6 +114,7 @@ export default function App() {
   }
   function createNewListing(formData) {
     setCreatedListings([...createdListings, formData]);
+    setData([...data, formData]);
   }
 }
 const AppContainer = styled.div`

@@ -43,7 +43,7 @@ export default function BookmarkPage({
         <p>No bookmarked listings yet. Start bookmarking!</p>
       )}
 
-      {filteredBookmarkedListings.length > 0 ? (
+      {filteredBookmarkedCreatedListings.length > 0 ? (
         filteredBookmarkedCreatedListings.map((item, index) => (
           <Listing key={index}>
             <h2>{item.title}.</h2>

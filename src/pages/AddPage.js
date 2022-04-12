@@ -12,7 +12,7 @@ export default function AddPage({ onCreateListing }) {
       ...formData,
       [name]: value,
       isBookmarked: false,
-      _id: nanoid(),
+      id: nanoid(),
     });
   };
 
@@ -31,6 +31,7 @@ export default function AddPage({ onCreateListing }) {
           id="title"
           placeholder="Add a title for your listing"
           onChange={handleOnChange}
+          required
         />
       </label>
 
@@ -40,6 +41,7 @@ export default function AddPage({ onCreateListing }) {
           id="baseRent"
           placeholder="Insert the base rent"
           onChange={handleOnChange}
+          required
         />
       </label>
 
@@ -61,6 +63,7 @@ export default function AddPage({ onCreateListing }) {
           type="number"
           placeholder="e.g 80.25"
           onChange={handleOnChange}
+          required
         />
       </label>
 
