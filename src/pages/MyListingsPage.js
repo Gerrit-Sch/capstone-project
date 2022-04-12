@@ -1,26 +1,23 @@
 import { CardList, Listing, Bookmark } from "../pages/ListingPage";
 import styled from "styled-components";
 
-export default function MyListingsPage({
-  createdListings,
-  handleBookmarkClick,
-}) {
+export default function MyListingsPage({ data, handleBookmarkClick }) {
   return (
     <CardList>
-      {createdListings.map((item) => (
-        <Listing key={item.id}>
-          <h2>{item.title}.</h2>
+      {data.map((listing) => (
+        <Listing key={listing.id}>
+          <h2>{listing.title}.</h2>
           <Bookmark
-            active={item.isBookmarked}
-            onClick={() => handleBookmarkClick(item.id)}
+            active={listing.isBookmarked}
+            onClick={() => handleBookmarkClick(listing.id)}
           >
             bookmark
           </Bookmark>
           <DeleteButton>Delete</DeleteButton>
-          <p>{item.areaCodeForm}</p>
-          <p>{item.baseRent}</p>
-          <p>{item.livingSpace}</p>
-          <p>{item.description}</p>
+          <p>{listing.postcode}</p>
+          <p>{listing.baseRent}</p>
+          <p>{listing.livingSpace}</p>
+          <p>{listing.description}</p>
         </Listing>
       ))}
     </CardList>

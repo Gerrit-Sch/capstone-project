@@ -15,11 +15,8 @@ export default function App() {
     return { ...listing, isBookmarked: false, id: nanoid() };
   });
   const [areaCode, setAreaCode] = useState("");
-  const [data, setData] = useState(updatedData);
-  const [createdListings, setCreatedListings] = useLocalStorage(
-    "createdListings",
-    []
-  );
+  const [data, setData] = useLocalStorage("updatedData", []);
+
   console.log(data);
   return (
     <AppContainer>
@@ -42,11 +39,7 @@ export default function App() {
         <Route
           path="/bookmarked"
           element={
-            <BookmarkPage
-              data={data}
-              handleBookmarkClick={toggleBookmark}
-              createdListings={createdListings}
-            />
+            <BookmarkPage data={data} handleBookmarkClick={toggleBookmark} />
           }
         />
         <Route
@@ -56,10 +49,7 @@ export default function App() {
         <Route
           path="/mylistings"
           element={
-            <MyListingsPage
-              createdListings={createdListings}
-              handleBookmarkClick={toggleBookmark2}
-            />
+            <MyListingsPage data={data} handleBookmarkClick={toggleBookmark} />
           }
         />
       </Routes>
@@ -102,19 +92,18 @@ export default function App() {
     );
   }
 
-  function toggleBookmark2(_id) {
-    setCreatedListings(
-      createdListings.map((item) => {
-        if (item._id === _id) {
-          return { ...item, isBookmarked: !item.isBookmarked };
-        }
-        return item;
-      })
-    );
-  }
   function createNewListing(formData) {
-    setCreatedListings([...createdListings, formData]);
-    setData([...data, formData]);
+    const newListingTest = {
+      "realestates.apartmentRent": {
+        title: formData.title,
+        postcode: formData.postcode,
+      },
+      baseRent: formData.baseRent,
+      livingSpace: formData.livingSpace,
+      id: nanoid(),
+      isBookmarked: false,
+    };
+    setData([...data, newListingTest]);
   }
 }
 const AppContainer = styled.div`

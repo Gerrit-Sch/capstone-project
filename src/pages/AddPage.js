@@ -6,15 +6,15 @@ export default function AddPage({ onCreateListing }) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
 
-  const handleOnChange = (event) => {
+  function handleOnChange(event) {
     const { name, value } = event.target;
     setFormData({
       ...formData,
       [name]: value,
-      isBookmarked: false,
-      id: nanoid(),
     });
-  };
+  }
+
+  console.log(formData);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -45,11 +45,11 @@ export default function AddPage({ onCreateListing }) {
         />
       </label>
 
-      <label htmlFor="areaCodeForm">
+      <label htmlFor="postcode">
         <input
-          id="areaCodeForm"
+          id="postcode"
           maxLength="5"
-          name="areaCodeForm"
+          name="postcode"
           type="number"
           placeholder="Insert 5-digit area code"
           onChange={handleOnChange}
@@ -64,17 +64,6 @@ export default function AddPage({ onCreateListing }) {
           placeholder="e.g 80.25"
           onChange={handleOnChange}
           required
-        />
-      </label>
-
-      <label htmlFor="description">
-        <input
-          id="description"
-          placeholder="Any further info you would like to share?"
-          type="text"
-          name="description"
-          maxLength="500"
-          onChange={handleOnChange}
         />
       </label>
 
