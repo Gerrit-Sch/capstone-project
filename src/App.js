@@ -16,6 +16,7 @@ export default function App() {
   });
   const [areaCode, setAreaCode] = useState("");
   const [data, setData] = useLocalStorage("updatedData", updatedData);
+  const [myListings, setMyListings] = useState([]);
 
   console.log(data);
   return (
@@ -51,7 +52,7 @@ export default function App() {
           path="/mylistings"
           element={
             <MyListingsPage
-              data={data}
+              data={myListings}
               handleBookmarkClick={toggleBookmark}
               onDeleteListing={handleDeleteListing}
             />
@@ -95,10 +96,19 @@ export default function App() {
         return listing;
       })
     );
+    setMyListings(
+      myListings.map((myListing) => {
+        if (myListing.id === id) {
+          return { ...myListing, isBookmarked: !myListing.isBookmarked };
+        }
+        return myListing;
+      })
+    );
   }
 
   function handleDeleteListing(id) {
     setData(data.filter((listing) => listing.id !== id));
+    setMyListings(myListings.filter((myListing) => myListing.id !== id));
   }
 
   function createNewListing(formData) {
@@ -113,6 +123,7 @@ export default function App() {
       isBookmarked: false,
     };
     setData([...data, newListingTest]);
+    setMyListings([...myListings, newListingTest]);
   }
 }
 const AppContainer = styled.div`
