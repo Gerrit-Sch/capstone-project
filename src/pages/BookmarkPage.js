@@ -1,8 +1,11 @@
-import { CardList } from "./ListingPage";
-import { Listing } from "./ListingPage";
-import { Bookmark } from "./ListingPage";
+import { CardList, Bookmark, Listing } from "./ListingPage";
+import DeleteButton from "./MyListingsPage";
 
-export default function BookmarkPage({ data, handleBookmarkClick }) {
+export default function BookmarkPage({
+  data,
+  handleBookmarkClick,
+  onDeleteListing,
+}) {
   const filteredBookmarkedListings = data.filter(
     (listing) => listing.isBookmarked === true
   );
@@ -26,6 +29,10 @@ export default function BookmarkPage({ data, handleBookmarkClick }) {
                 {listing["realestates.apartmentRent"].address.street}{" "}
                 {listing["realestates.apartmentRent"].address.houseNumber}
               </p>
+
+              <DeleteButton onClick={() => onDeleteListing(listing.id)}>
+                Delete
+              </DeleteButton>
 
               <p>{listing["realestates.apartmentRent"].address.postcode}</p>
               <p>{listing["realestates.apartmentRent"].address.city}</p>

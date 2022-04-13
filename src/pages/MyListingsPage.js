@@ -1,23 +1,29 @@
 import { CardList, Listing, Bookmark } from "../pages/ListingPage";
 import styled from "styled-components";
 
-export default function MyListingsPage({ data, handleBookmarkClick }) {
+export default function MyListingsPage({
+  data,
+  handleBookmarkClick,
+  onDeleteListing,
+}) {
   return (
     <CardList>
       {data.map((listing) => (
         <Listing key={listing.id}>
-          <h2>{listing.title}.</h2>
+          <h2>{listing["realestates.apartmentRent"].title}.</h2>
           <Bookmark
             active={listing.isBookmarked}
             onClick={() => handleBookmarkClick(listing.id)}
           >
             bookmark
           </Bookmark>
-          <DeleteButton>Delete</DeleteButton>
-          <p>{listing.postcode}</p>
+          <DeleteButton onClick={() => onDeleteListing(listing.id)}>
+            Delete
+          </DeleteButton>
+
+          <p>{listing["realestates.apartmentRent"].address.postcode}</p>
           <p>{listing.baseRent}</p>
           <p>{listing.livingSpace}</p>
-          <p>{listing.description}</p>
         </Listing>
       ))}
     </CardList>
@@ -30,3 +36,5 @@ const DeleteButton = styled.button`
   top: 180px;
   background-color: transparent;
 `;
+
+export { DeleteButton };

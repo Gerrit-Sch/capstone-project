@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { nanoid } from "nanoid";
 
 export default function AddPage({ onCreateListing }) {
   const navigate = useNavigate();

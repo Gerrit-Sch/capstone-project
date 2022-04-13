@@ -1,6 +1,11 @@
 import styled from "styled-components";
-
-export default function ListingPage({ areaCode, handleBookmarkClick, data }) {
+import { DeleteButton } from "./MyListingsPage";
+export default function ListingPage({
+  areaCode,
+  handleBookmarkClick,
+  data,
+  onDeleteListing,
+}) {
   const filteredListings = data.filter(
     (listing) =>
       listing["realestates.apartmentRent"].address.postcode === areaCode
@@ -19,13 +24,11 @@ export default function ListingPage({ areaCode, handleBookmarkClick, data }) {
               >
                 bookmark
               </Bookmark>
-              <p>
-                {listing["realestates.apartmentRent"].address.street}{" "}
-                {listing["realestates.apartmentRent"].address.houseNumber}
-              </p>
-
               <p>{listing["realestates.apartmentRent"].address.postcode}</p>
-              <p>{listing["realestates.apartmentRent"].address.city}</p>
+              <DeleteButton onClick={() => onDeleteListing(listing.id)}>
+                Delete
+              </DeleteButton>
+
               <p>Base rent: {listing.baseRent} € </p>
               <p>Living space: {listing.livingSpace} m2</p>
             </Listing>

@@ -15,7 +15,7 @@ export default function App() {
     return { ...listing, isBookmarked: false, id: nanoid() };
   });
   const [areaCode, setAreaCode] = useState("");
-  const [data, setData] = useLocalStorage("updatedData", []);
+  const [data, setData] = useLocalStorage("updatedData", updatedData);
 
   console.log(data);
   return (
@@ -33,6 +33,7 @@ export default function App() {
               areaCode={areaCode}
               handleBookmarkClick={toggleBookmark}
               data={data}
+              onDeleteListing={handleDeleteListing}
             />
           }
         />
@@ -49,7 +50,11 @@ export default function App() {
         <Route
           path="/mylistings"
           element={
-            <MyListingsPage data={data} handleBookmarkClick={toggleBookmark} />
+            <MyListingsPage
+              data={data}
+              handleBookmarkClick={toggleBookmark}
+              onDeleteListing={handleDeleteListing}
+            />
           }
         />
       </Routes>
@@ -92,11 +97,15 @@ export default function App() {
     );
   }
 
+  function handleDeleteListing(id) {
+    setData(data.filter((listing) => listing.id !== id));
+  }
+
   function createNewListing(formData) {
     const newListingTest = {
       "realestates.apartmentRent": {
         title: formData.title,
-        postcode: formData.postcode,
+        address: { postcode: formData.postcode },
       },
       baseRent: formData.baseRent,
       livingSpace: formData.livingSpace,
