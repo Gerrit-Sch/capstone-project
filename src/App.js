@@ -64,7 +64,7 @@ export default function App() {
             <i className="fa fa-search"></i>
           </Link>
 
-          <Link to="bookmarked/">
+          <Link to="/bookmarked">
             <i className="fa fa-bookmark"></i>
           </Link>
 
