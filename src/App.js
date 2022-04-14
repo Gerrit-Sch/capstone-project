@@ -18,7 +18,6 @@ export default function App() {
   const [data, setData] = useLocalStorage("updatedData", updatedData);
   const [myListings, setMyListings] = useState([]);
 
-  console.log(data);
   return (
     <AppContainer>
       <h1> SuperRentalHomes </h1>

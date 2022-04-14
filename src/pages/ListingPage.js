@@ -1,3 +1,4 @@
+import sampleData from "../assets/Data";
 import styled from "styled-components";
 import { DeleteButton } from "./MyListingsPage";
 export default function ListingPage({
@@ -10,13 +11,15 @@ export default function ListingPage({
     (listing) =>
       listing["realestates.apartmentRent"].address.postcode === areaCode
   );
-
+  const match = postcodes.includes(areaCode);
   return (
     <CardList>
-      {filteredListings.length > 0 ? (
-        filteredListings.map((listing) => {
+      {sampleData.map((listing, index) => {
+        if (
+          listing["realestates.apartmentRent"].address.postcode === areaCode
+        ) {
           return (
-            <Listing key={listing.id}>
+            <Listing key={(index, listing)}>
               <h2>{listing["realestates.apartmentRent"].title}</h2>
               <Bookmark
                 active={listing.isBookmarked}
@@ -33,7 +36,10 @@ export default function ListingPage({
               <p>Living space: {listing.livingSpace} m2</p>
             </Listing>
           );
-        })
+        }
+      })}
+      {match ? (
+        ""
       ) : (
         <p>Unfortunately, there are no matches. Please try again!</p>
       )}
@@ -63,7 +69,4 @@ const Bookmark = styled.button`
   position: absolute;
   right: 50px;
   top: -10px;
-  background-color: ${({ active }) => (active ? "red" : "transparent")};
 `;
-
-export { CardList, Listing, Bookmark };
