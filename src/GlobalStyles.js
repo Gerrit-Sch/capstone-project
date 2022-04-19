@@ -2,6 +2,17 @@ import { createGlobalStyle } from "styled-components";
 export default createGlobalStyle`
 * {
     box-sizing: border-box;
+   
+  }
+  body {
+    font-family: Poppins;
+    display: grid;
+   
+    height: 100vh;
+  }
+
+  main {
+    overflow-y:auto
   }
   
 
@@ -12,4 +23,6 @@ export default createGlobalStyle`
   button {
     font-size: 1em;
   }
+
+  
 `;
