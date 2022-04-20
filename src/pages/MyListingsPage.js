@@ -3,6 +3,9 @@ import styled from "styled-components";
 import DeleteMessage from "../components/DeleteModal";
 import { useState } from "react";
 
+import { GrBookmark } from "react-icons/gr";
+import { GrTrash } from "react-icons/gr";
+
 export default function MyListingsPage({
   data,
   handleBookmarkClick,
@@ -18,10 +21,10 @@ export default function MyListingsPage({
             active={listing.isBookmarked}
             onClick={() => handleBookmarkClick(listing.id)}
           >
-            bookmark
+            <GrBookmark />
           </Bookmark>
           <DeleteButton onClick={() => setShowMessage(true)}>
-            Delete
+            <GrTrash />
           </DeleteButton>
           {showMessage && (
             <DeleteMessage
@@ -31,8 +34,8 @@ export default function MyListingsPage({
           )}
 
           <p>{listing["realestates.apartmentRent"].address.postcode}</p>
-          <p>{listing.baseRent}</p>
-          <p>{listing.livingSpace}</p>
+          <p>{listing.baseRent} €</p>
+          <p>{listing.livingSpace} m2</p>
         </Listing>
       ))}
     </CardList>

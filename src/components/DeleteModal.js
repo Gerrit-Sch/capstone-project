@@ -1,25 +1,26 @@
 import styled from "styled-components";
 import DeleteMessageButton from "./DeleteMessageButton";
+import { GrCheckmark, GrClose } from "react-icons/gr";
 
 export default function DeleteMessage({ onConfirmDelete, onCancelDelete }) {
   return (
     <MessageOverlay>
       <MessageContent>
-        <p>Do you really want to delete this plant?</p>
+        <p>Do you really want to delete this listing?</p>
         <MessageWindowWrapper>
-          <DeleteMessageButton
-            variant={"cancel"}
-            type="button"
-            onClick={onCancelDelete}
-          >
-            NO!
-          </DeleteMessageButton>
           <DeleteMessageButton
             variant={"confirm"}
             type="button"
             onClick={onConfirmDelete}
           >
-            YES!
+            <GrCheckmark />
+          </DeleteMessageButton>
+          <DeleteMessageButton
+            variant={"cancel"}
+            type="button"
+            onClick={onCancelDelete}
+          >
+            <GrClose />
           </DeleteMessageButton>
         </MessageWindowWrapper>
       </MessageContent>
@@ -38,15 +39,16 @@ const MessageContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   align-items: center;
-  padding: 10px;
+  padding: 5px;
   width: 50%;
   margin: 30vh auto;
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
+  background-color: white;
+  border-radius: 8px;
   p {
     font-size: 0.9rem;
-    color: #556b2f;
+    color: black;
     text-align: center;
   }
 `;

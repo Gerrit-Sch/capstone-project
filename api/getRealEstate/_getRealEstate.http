@@ -1,0 +1,8 @@
+
+@baseURL = https://rest.immobilienscout24.de/restapi/api/offer/v1.0/user/999999/contact/58850320
+
+### GET/getMovieDetails
+GET {{baseURL}}/getRealEstate/
+Content-Type: application/json
+
+
