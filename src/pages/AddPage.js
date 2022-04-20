@@ -1,11 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import styled from "styled-components";
-import InputStyled from "./LandingPage";
+import axios from "axios";
+
+const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
+const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
 export default function AddPage({ onCreateListing }) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
+  const [image, setImage] = useState("");
 
   function handleOnChange(event) {
     const { name, value } = event.target;
@@ -14,8 +18,26 @@ export default function AddPage({ onCreateListing }) {
       [name]: value,
     });
   }
+  function upload(event) {
+    const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`;
 
-  console.log(formData);
+    const formData1 = new FormData();
+    formData1.append("file", event.target.files[0]);
+    formData1.append("upload_preset", PRESET);
+
+    axios
+      .post(url, formData1, {
+        headers: {
+          "Content-type": "multipart/form-data",
+        },
+      })
+      .then(onImageSave)
+      .catch((err) => console.error(err));
+  }
+
+  function onImageSave(response) {
+    setImage(response.data.url);
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -28,6 +50,14 @@ export default function AddPage({ onCreateListing }) {
     <>
       <FormContainer onSubmit={handleSubmit}>
         <h3>Add your own rental flat!</h3>
+        <div>
+          {image ? (
+            <img src={image} alt="" style={{ width: "100%" }} />
+          ) : (
+            <input type="file" name="file" onChange={upload} />
+          )}
+        </div>
+
         <label htmlFor="title">
           <InputAdd
             name="title"
@@ -79,8 +109,8 @@ export default function AddPage({ onCreateListing }) {
 }
 
 const FormContainer = styled.form`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+
   gap: 15px;
 `;
 
