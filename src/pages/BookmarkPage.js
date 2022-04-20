@@ -1,4 +1,5 @@
 import { CardList, Bookmark, Listing } from "./ListingPage";
+import { GrBookmark } from "react-icons/gr";
 
 export default function BookmarkPage({ data, handleBookmarkClick }) {
   const filteredBookmarkedListings = data.filter(
@@ -18,7 +19,7 @@ export default function BookmarkPage({ data, handleBookmarkClick }) {
                 active={listing.isBookmarked}
                 onClick={() => handleBookmarkClick(listing.id)}
               >
-                bookmark
+                <GrBookmark />
               </Bookmark>
 
               <p>{listing["realestates.apartmentRent"].address.postcode}</p>

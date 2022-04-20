@@ -2,13 +2,15 @@ import styled from "styled-components";
 import LandingPage from "./pages/LandingPage";
 import ListingPage from "./pages/ListingPage";
 import { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import sampleData from "./assets/Data";
 import { nanoid } from "nanoid";
 import BookmarkPage from "./pages/BookmarkPage";
 import AddPage from "./pages/AddPage";
 import MyListingsPage from "./pages/MyListingsPage";
 import useLocalStorage from "./hooks/useLocalStorage";
+import image from "./img/joel2.jpg";
+import Navigation from "./components/Navigation";
 
 export default function App() {
   const updatedData = sampleData.map((listing) => {
@@ -19,7 +21,14 @@ export default function App() {
   const [myListings, setMyListings] = useState([]);
 
   return (
-    <AppContainer>
+    <AppContainer
+      style={{
+        backgroundImage: `url(${image})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "top",
+        backgroundSize: "cover",
+      }}
+    >
       <h1> SuperRentalHomes </h1>
       <Routes>
         <Route
@@ -58,29 +67,7 @@ export default function App() {
           }
         />
       </Routes>
-      <footer>
-        <nav>
-          <Link to="/">
-            <i className="fa fa-search"></i>
-          </Link>
-
-          <Link to="/bookmarked">
-            <i className="fa fa-bookmark"></i>
-          </Link>
-
-          <Link to="/listings">
-            <i className="fa fa-home"></i>
-          </Link>
-
-          <Link to="/add">
-            <i className="fa fa-plus"></i>
-          </Link>
-
-          <Link to="/mylistings">
-            <i className="fa fa-newspaper"></i>
-          </Link>
-        </nav>
-      </footer>
+      <Navigation />
     </AppContainer>
   );
   function handleAreaCodeInput(areaCode) {
@@ -132,7 +119,7 @@ const AppContainer = styled.div`
   gap: 20px;
   min-height: 100vh;
   padding: 20px;
-  background-color: orange;
+  background-color: grey;
 `;
 
 /* */

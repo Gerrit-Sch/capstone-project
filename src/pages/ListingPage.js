@@ -1,12 +1,17 @@
-import sampleData from "../assets/Data";
 import styled from "styled-components";
 import { DeleteButton } from "./MyListingsPage";
+import { GrBookmark } from "react-icons/gr";
+import { GrTrash } from "react-icons/gr";
+import DeleteMessage from "../components/DeleteModal";
+import { useState } from "react";
+
 export default function ListingPage({
   areaCode,
   handleBookmarkClick,
   data,
   onDeleteListing,
 }) {
+  const [showMessage, setShowMessage] = useState(false);
   const filteredListings = data.filter(
     (listing) =>
       listing["realestates.apartmentRent"].address.postcode === areaCode
@@ -23,12 +28,18 @@ export default function ListingPage({
                 active={listing.isBookmarked}
                 onClick={() => handleBookmarkClick(listing.id)}
               >
-                bookmark
+                <GrBookmark />
               </Bookmark>
               <p>{listing["realestates.apartmentRent"].address.postcode}</p>
-              <DeleteButton onClick={() => onDeleteListing(listing.id)}>
-                Delete
+              <DeleteButton onClick={() => setShowMessage(true)}>
+                <GrTrash />
               </DeleteButton>
+              {showMessage && (
+                <DeleteMessage
+                  onConfirmDelete={() => onDeleteListing(listing.id)}
+                  onCancelDelete={() => setShowMessage(false)}
+                />
+              )}
 
               <p>Base rent: {listing.baseRent} € </p>
               <p>Living space: {listing.livingSpace} m2</p>
@@ -48,7 +59,7 @@ const CardList = styled.ul`
   gap: 25px;
   list-style: none;
   padding: 0;
-  width: 100%;
+  width: 100%; ;
 `;
 
 const Listing = styled.li`
@@ -62,9 +73,12 @@ const Listing = styled.li`
 
 const Bookmark = styled.button`
   position: absolute;
-  right: 50px;
-  top: -10px;
-  background-color: ${({ active }) => (active ? "red" : "transparent")};
+
+  background: transparent;
+  border: none;
+  right: 25px;
+  top: 5px;
+  background-color: ${({ active }) => (active ? "lightblue" : "transparent")};
 `;
 
 export { CardList, Listing, Bookmark };

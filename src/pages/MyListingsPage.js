@@ -1,11 +1,17 @@
 import { CardList, Listing, Bookmark } from "../pages/ListingPage";
 import styled from "styled-components";
+import DeleteMessage from "../components/DeleteModal";
+import { useState } from "react";
+
+import { GrBookmark } from "react-icons/gr";
+import { GrTrash } from "react-icons/gr";
 
 export default function MyListingsPage({
   data,
   handleBookmarkClick,
   onDeleteListing,
 }) {
+  const [showMessage, setShowMessage] = useState(false);
   return (
     <CardList>
       {data.map((listing) => (
@@ -15,15 +21,21 @@ export default function MyListingsPage({
             active={listing.isBookmarked}
             onClick={() => handleBookmarkClick(listing.id)}
           >
-            bookmark
+            <GrBookmark />
           </Bookmark>
-          <DeleteButton onClick={() => onDeleteListing(listing.id)}>
-            Delete
+          <DeleteButton onClick={() => setShowMessage(true)}>
+            <GrTrash />
           </DeleteButton>
+          {showMessage && (
+            <DeleteMessage
+              onConfirmDelete={() => onDeleteListing(listing.id)}
+              onCancelDelete={() => setShowMessage(false)}
+            />
+          )}
 
           <p>{listing["realestates.apartmentRent"].address.postcode}</p>
-          <p>{listing.baseRent}</p>
-          <p>{listing.livingSpace}</p>
+          <p>{listing.baseRent} €</p>
+          <p>{listing.livingSpace} m2</p>
         </Listing>
       ))}
     </CardList>
@@ -32,9 +44,11 @@ export default function MyListingsPage({
 
 const DeleteButton = styled.button`
   position: absolute;
-  right: 50px;
-  top: 180px;
+
+  right: 25px;
+  bottom: 5px;
   background-color: transparent;
+  border: transparent;
 `;
 
 export { DeleteButton };
