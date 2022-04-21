@@ -30,7 +30,17 @@ export default function ListingPage({
               >
                 <GrBookmark />
               </Bookmark>
-              <p>{listing["realestates.apartmentRent"].address.postcode}</p>
+              <p>
+                {listing["realestates.apartmentRent"].address.postcode}{" "}
+                {listing["realestates.apartmentRent"].address.city}
+              </p>
+              <p>
+                {
+                  listing["realestates.apartmentRent"].attachments[0][
+                    "@xlink.href"
+                  ]
+                }
+              </p>
               <DeleteButton onClick={() => setShowMessage(true)}>
                 <GrTrash />
               </DeleteButton>

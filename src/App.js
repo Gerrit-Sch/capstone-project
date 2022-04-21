@@ -103,8 +103,9 @@ export default function App() {
     const newListingTest = {
       "realestates.apartmentRent": {
         title: formData.title,
-        address: { postcode: formData.postcode },
+        address: { postcode: formData.postcode, city: formData.city },
       },
+
       baseRent: formData.baseRent,
       livingSpace: formData.livingSpace,
       id: nanoid(),

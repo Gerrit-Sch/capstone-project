@@ -89,6 +89,15 @@ export default function AddPage({ onCreateListing }) {
             onChange={handleOnChange}
           />
         </label>
+        <label htmlFor="city">
+          <InputAdd
+            id="city"
+            name="city"
+            type="text"
+            placeholder="Insert corresponding city"
+            onChange={handleOnChange}
+          />
+        </label>
 
         <label htmlFor="livingSpace">
           <InputAdd

@@ -22,8 +22,7 @@ const sampleData = [
       otherNote: "other-note",
       attachments: [
         {
-          "@xlink.href":
-            "https://rest.sandbox-immobilienscout24.de/restapi/api/offer/v1.0/user/me/realestate/315266813/attachment",
+          "@xlink.href": "https://source.unsplash.com/random",
         },
       ],
       showAddress: "false",
@@ -99,8 +98,7 @@ const sampleData = [
       otherNote: "other-note",
       attachments: [
         {
-          "@xlink.href":
-            "https://rest.sandbox-immobilienscout24.de/restapi/api/offer/v1.0/user/me/realestate/315266813/attachment",
+          "@xlink.href": "https://source.unsplash.com/random",
         },
       ],
       showAddress: "false",
@@ -176,8 +174,7 @@ const sampleData = [
       otherNote: "other-note",
       attachments: [
         {
-          "@xlink.href":
-            "https://rest.sandbox-immobilienscout24.de/restapi/api/offer/v1.0/user/me/realestate/315266813/attachment",
+          "@xlink.href": "https://source.unsplash.com/random",
         },
       ],
       showAddress: "false",
@@ -254,8 +251,7 @@ const sampleData = [
       otherNote: "other-note",
       attachments: [
         {
-          "@xlink.href":
-            "https://rest.sandbox-immobilienscout24.de/restapi/api/offer/v1.0/user/me/realestate/315266813/attachment",
+          "@xlink.href": "https://source.unsplash.com/random",
         },
       ],
       showAddress: "false",

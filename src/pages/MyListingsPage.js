@@ -33,7 +33,10 @@ export default function MyListingsPage({
             />
           )}
 
-          <p>{listing["realestates.apartmentRent"].address.postcode}</p>
+          <p>
+            {listing["realestates.apartmentRent"].address.postcode}{" "}
+            {listing["realestates.apartmentRent"].address.city}
+          </p>
           <p>{listing.baseRent} €</p>
           <p>{listing.livingSpace} m2</p>
         </Listing>
