@@ -16,29 +16,38 @@ export default function MyListingsPage({
     <CardList>
       {data.map((listing) => (
         <Listing key={listing.id}>
-          <h2>{listing["realestates.apartmentRent"].title}.</h2>
-          <Bookmark
-            active={listing.isBookmarked}
-            onClick={() => handleBookmarkClick(listing.id)}
-          >
-            <GrBookmark />
-          </Bookmark>
-          <DeleteButton onClick={() => setShowMessage(true)}>
-            <GrTrash />
-          </DeleteButton>
-          {showMessage && (
-            <DeleteMessage
-              onConfirmDelete={() => onDeleteListing(listing.id)}
-              onCancelDelete={() => setShowMessage(false)}
-            />
-          )}
+          <img
+            src={listing["realestates.apartmentRent"].attachments}
+            alt="attachment here"
+            width="150"
+            height="200"
+          />
 
-          <p>
-            {listing["realestates.apartmentRent"].address.postcode}{" "}
-            {listing["realestates.apartmentRent"].address.city}
-          </p>
-          <p>{listing.baseRent} €</p>
-          <p>{listing.livingSpace} m2</p>
+          <ul>
+            <h3>{listing["realestates.apartmentRent"].title}.</h3>
+            <Bookmark
+              active={listing.isBookmarked}
+              onClick={() => handleBookmarkClick(listing.id)}
+            >
+              <GrBookmark />
+            </Bookmark>
+            <DeleteButton onClick={() => setShowMessage(true)}>
+              <GrTrash />
+            </DeleteButton>
+            {showMessage && (
+              <DeleteMessage
+                onConfirmDelete={() => onDeleteListing(listing.id)}
+                onCancelDelete={() => setShowMessage(false)}
+              />
+            )}
+
+            <p>
+              {listing["realestates.apartmentRent"].address.postcode}{" "}
+              {listing["realestates.apartmentRent"].address.city}
+            </p>
+            <p>Base rent: {listing.baseRent} € </p>
+            <p>Living space: {listing.livingSpace} m2</p>
+          </ul>
         </Listing>
       ))}
     </CardList>

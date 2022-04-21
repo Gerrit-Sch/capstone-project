@@ -52,9 +52,11 @@ export default function AddPage({ onCreateListing }) {
         <h3>Add your own rental flat!</h3>
         <div>
           {image ? (
-            <img src={image} alt="" style={{ width: "100%" }} />
+            <img src={image} alt="attachment here" width="150" height="200" />
           ) : (
-            <input type="file" name="file" onChange={upload} />
+            <label htmlFor="image">
+              <InputAdd type="file" name="image" id="image" onChange={upload} />
+            </label>
           )}
         </div>
 

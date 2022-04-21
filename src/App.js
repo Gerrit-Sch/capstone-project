@@ -104,6 +104,7 @@ export default function App() {
       "realestates.apartmentRent": {
         title: formData.title,
         address: { postcode: formData.postcode, city: formData.city },
+        attachments: formData.image,
       },
 
       baseRent: formData.baseRent,
@@ -121,8 +122,8 @@ const AppContainer = styled.div`
   align-content: start;
   gap: 20px;
   min-height: 100vh;
-  padding: 20px;
-  background-color: grey;
+  min-width: 100vw;
+  padding: 15px;
 `;
 
 /* */

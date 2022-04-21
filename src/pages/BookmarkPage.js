@@ -14,21 +14,33 @@ export default function BookmarkPage({ data, handleBookmarkClick }) {
         filteredBookmarkedListings.map((listing) => {
           return (
             <Listing key={listing.id}>
-              <h2>{listing["realestates.apartmentRent"].title}</h2>
-              <Bookmark
-                active={listing.isBookmarked}
-                onClick={() => handleBookmarkClick(listing.id)}
-              >
-                <GrBookmark />
-              </Bookmark>
+              <img
+                src={
+                  listing["realestates.apartmentRent"].attachments[0][
+                    "@xlink.href"
+                  ]
+                }
+                alt="attachment here"
+                width="150"
+                height="200"
+              />
+              <ul>
+                <h3>{listing["realestates.apartmentRent"].title}</h3>
+                <Bookmark
+                  active={listing.isBookmarked}
+                  onClick={() => handleBookmarkClick(listing.id)}
+                >
+                  <GrBookmark />
+                </Bookmark>
 
-              <p>
-                {listing["realestates.apartmentRent"].address.postcode}{" "}
-                {listing["realestates.apartmentRent"].address.city}
-              </p>
+                <p>
+                  {listing["realestates.apartmentRent"].address.postcode}{" "}
+                  {listing["realestates.apartmentRent"].address.city}
+                </p>
 
-              <p>Base rent: {listing.baseRent} € </p>
-              <p>Living space: {listing.livingSpace}: m2</p>
+                <p>Base rent: {listing.baseRent} € </p>
+                <p>Living space: {listing.livingSpace}: m2</p>
+              </ul>
             </Listing>
           );
         })
