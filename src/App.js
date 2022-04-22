@@ -11,7 +11,6 @@ import MyListingsPage from "./pages/MyListingsPage";
 import useLocalStorage from "./hooks/useLocalStorage";
 import image from "./img/joel2.jpg";
 import Navigation from "./components/Navigation";
-import UploadTest from "./pages/UploadTest";
 
 export default function App() {
   const updatedData = sampleData.map((listing) => {
@@ -30,7 +29,7 @@ export default function App() {
         backgroundSize: "cover",
       }}
     >
-      <h1> SuperRentalHomes </h1>
+      <h1> RentalHomes </h1>
       <Routes>
         <Route
           path="/"
@@ -67,7 +66,6 @@ export default function App() {
             />
           }
         />
-        <Route path="/upload" element={<UploadTest />} />
       </Routes>
       <Navigation />
     </AppContainer>

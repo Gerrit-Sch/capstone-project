@@ -150,31 +150,3 @@ const ButtonAdd = styled.button`
   border: none;
   border-radius: 8px;
 `;
-
-const ImageUpload = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 5px 0;
-  input[type="file"] {
-    opacity: 0;
-    z-index: -1;
-    position: absolute;
-    top: -1px;
-    left: 0;
-    width: 0.1px;
-    height: 0.1px;
-  }
-
-  label[for="files"] {
-    position: relative;
-    font-size: 14px;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: var(--box-shadow);
-    background-color: var(--color-gray);
-    color: var(--color-light-gray);
-    width: 170px;
-  }
-`;
