@@ -30,7 +30,7 @@ export default function App() {
         backgroundSize: "cover",
       }}
     >
-      <h1> SuperRentalHomes </h1>
+      <h1> RentalHomes </h1>
       <Routes>
         <Route
           path="/"
