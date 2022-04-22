@@ -23,26 +23,42 @@ export default function ListingPage({
         filteredListings.map((listing) => {
           return (
             <Listing key={listing.id}>
-              <h2>{listing["realestates.apartmentRent"].title}</h2>
-              <Bookmark
-                active={listing.isBookmarked}
-                onClick={() => handleBookmarkClick(listing.id)}
-              >
-                <GrBookmark />
-              </Bookmark>
-              <p>{listing["realestates.apartmentRent"].address.postcode}</p>
-              <DeleteButton onClick={() => setShowMessage(true)}>
-                <GrTrash />
-              </DeleteButton>
-              {showMessage && (
-                <DeleteMessage
-                  onConfirmDelete={() => onDeleteListing(listing.id)}
-                  onCancelDelete={() => setShowMessage(false)}
-                />
-              )}
+              <img
+                src={
+                  listing["realestates.apartmentRent"].attachments[0][
+                    "@xlink.href"
+                  ]
+                }
+                alt="attachment here"
+                width="150"
+                height="200"
+              />
+              <ul>
+                <h3>{listing["realestates.apartmentRent"].title}</h3>
 
-              <p>Base rent: {listing.baseRent} € </p>
-              <p>Living space: {listing.livingSpace} m2</p>
+                <Bookmark
+                  active={listing.isBookmarked}
+                  onClick={() => handleBookmarkClick(listing.id)}
+                >
+                  <GrBookmark />
+                </Bookmark>
+                <DeleteButton onClick={() => setShowMessage(true)}>
+                  <GrTrash />
+                </DeleteButton>
+                {showMessage && (
+                  <DeleteMessage
+                    onConfirmDelete={() => onDeleteListing(listing.id)}
+                    onCancelDelete={() => setShowMessage(false)}
+                  />
+                )}
+                <p>
+                  {listing["realestates.apartmentRent"].address.postcode}{" "}
+                  {listing["realestates.apartmentRent"].address.city}
+                </p>
+
+                <p>Base rent: {listing.baseRent} € </p>
+                <p>Living space: {listing.livingSpace} m2</p>
+              </ul>
             </Listing>
           );
         })
@@ -63,12 +79,17 @@ const CardList = styled.ul`
 `;
 
 const Listing = styled.li`
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 5px;
+
   background: white;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   height: auto;
   width: auto;
   border-radius: 8px;
   position: relative;
+  padding: 8px;
 `;
 
 const Bookmark = styled.button`

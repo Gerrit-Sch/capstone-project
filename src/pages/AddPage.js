@@ -1,11 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import styled from "styled-components";
-import InputStyled from "./LandingPage";
+import axios from "axios";
+
+const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
+const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
 export default function AddPage({ onCreateListing }) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
+  const [image, setImage] = useState("");
 
   function handleOnChange(event) {
     const { name, value } = event.target;
@@ -14,8 +18,27 @@ export default function AddPage({ onCreateListing }) {
       [name]: value,
     });
   }
+  function upload(event) {
+    const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`;
 
-  console.log(formData);
+    const formData1 = new FormData();
+    formData1.append("file", event.target.files[0]);
+    formData1.append("upload_preset", PRESET);
+
+    axios
+      .post(url, formData1, {
+        headers: {
+          "Content-type": "multipart/form-data",
+        },
+      })
+      .then(onImageSave)
+      .catch((err) => console.error(err));
+  }
+
+  function onImageSave(response) {
+    setImage(response.data.url);
+    setFormData({ ...formData, image: response.data.url });
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -28,12 +51,23 @@ export default function AddPage({ onCreateListing }) {
     <>
       <FormContainer onSubmit={handleSubmit}>
         <h3>Add your own rental flat!</h3>
+        <div>
+          {image ? (
+            <img src={image} alt="attachment here" width="150" height="200" />
+          ) : (
+            <label htmlFor="image">
+              <InputAdd type="file" name="image" id="image" onChange={upload} />
+            </label>
+          )}
+        </div>
+
         <label htmlFor="title">
           <InputAdd
             name="title"
             id="title"
             placeholder="Add a title for your listing"
             onChange={handleOnChange}
+            autoComplete="off"
             required
           />
         </label>
@@ -43,6 +77,7 @@ export default function AddPage({ onCreateListing }) {
             name="baseRent"
             id="baseRent"
             placeholder="Insert the base rent"
+            autoComplete="off"
             onChange={handleOnChange}
             required
           />
@@ -54,8 +89,19 @@ export default function AddPage({ onCreateListing }) {
             id="postcode"
             maxLength="5"
             name="postcode"
+            autoComplete="off"
             type="number"
             placeholder="Insert 5-digit area code"
+            onChange={handleOnChange}
+          />
+        </label>
+        <label htmlFor="city">
+          <InputAdd
+            id="city"
+            name="city"
+            type="text"
+            autoComplete="off"
+            placeholder="Insert corresponding city"
             onChange={handleOnChange}
           />
         </label>
@@ -66,6 +112,7 @@ export default function AddPage({ onCreateListing }) {
             name="livingSpace"
             type="number"
             placeholder="e.g 80"
+            autoComplete="off"
             onChange={handleOnChange}
             required
           />{" "}
@@ -79,8 +126,8 @@ export default function AddPage({ onCreateListing }) {
 }
 
 const FormContainer = styled.form`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+
   gap: 15px;
 `;
 
@@ -102,4 +149,32 @@ const ButtonAdd = styled.button`
   margin: 30px;
   border: none;
   border-radius: 8px;
+`;
+
+const ImageUpload = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+  input[type="file"] {
+    opacity: 0;
+    z-index: -1;
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 0.1px;
+    height: 0.1px;
+  }
+
+  label[for="files"] {
+    position: relative;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--color-gray);
+    color: var(--color-light-gray);
+    width: 170px;
+  }
 `;

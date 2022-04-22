@@ -31,7 +31,7 @@ export default function LandingPage({ onSubmit }) {
         <label htmlFor="areaCode"></label>
         <Input
           name="areaCode"
-          maxlength="10"
+          maxlength="5"
           id="areaCode"
           type="number"
           inputmode="numeric"
@@ -40,6 +40,7 @@ export default function LandingPage({ onSubmit }) {
           onChange={(event) => event.target.value}
           required
         />
+
         <Button>Find your place to live!</Button>
       </Form>
     </>

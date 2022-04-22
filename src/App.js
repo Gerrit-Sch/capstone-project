@@ -11,6 +11,7 @@ import MyListingsPage from "./pages/MyListingsPage";
 import useLocalStorage from "./hooks/useLocalStorage";
 import image from "./img/joel2.jpg";
 import Navigation from "./components/Navigation";
+import UploadTest from "./pages/UploadTest";
 
 export default function App() {
   const updatedData = sampleData.map((listing) => {
@@ -18,7 +19,7 @@ export default function App() {
   });
   const [areaCode, setAreaCode] = useState("");
   const [data, setData] = useLocalStorage("updatedData", updatedData);
-  const [myListings, setMyListings] = useState([]);
+  const [myListings, setMyListings] = useLocalStorage("data", []);
 
   return (
     <AppContainer
@@ -66,6 +67,7 @@ export default function App() {
             />
           }
         />
+        <Route path="/upload" element={<UploadTest />} />
       </Routes>
       <Navigation />
     </AppContainer>
@@ -101,8 +103,10 @@ export default function App() {
     const newListingTest = {
       "realestates.apartmentRent": {
         title: formData.title,
-        address: { postcode: formData.postcode },
+        address: { postcode: formData.postcode, city: formData.city },
+        attachments: [{ "@xlink.href": formData.image }],
       },
+
       baseRent: formData.baseRent,
       livingSpace: formData.livingSpace,
       id: nanoid(),
@@ -112,14 +116,10 @@ export default function App() {
     setMyListings([...myListings, newListingTest]);
   }
 }
-const AppContainer = styled.div`
-  display: grid;
-  place-items: center;
-  align-content: start;
-  gap: 20px;
-  min-height: 100vh;
-  padding: 20px;
-  background-color: grey;
-`;
 
-/* */
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+`;
