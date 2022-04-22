@@ -67,7 +67,6 @@ export default function App() {
             />
           }
         />
-        <Route path="/upload" element={<UploadTest />} />
       </Routes>
       <Navigation />
     </AppContainer>
