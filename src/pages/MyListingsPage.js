@@ -17,14 +17,16 @@ export default function MyListingsPage({
       {data.map((listing) => (
         <Listing key={listing.id}>
           <img
-            src={listing["realestates.apartmentRent"].attachments}
+            src={
+              listing["realestates.apartmentRent"].attachments[0]["@xlink.href"]
+            }
             alt="attachment here"
             width="150"
             height="200"
           />
 
           <ul>
-            <h3>{listing["realestates.apartmentRent"].title}.</h3>
+            <h3>{listing["realestates.apartmentRent"].title}</h3>
             <Bookmark
               active={listing.isBookmarked}
               onClick={() => handleBookmarkClick(listing.id)}
@@ -36,7 +38,9 @@ export default function MyListingsPage({
             </DeleteButton>
             {showMessage && (
               <DeleteMessage
-                onConfirmDelete={() => onDeleteListing(listing.id)}
+                onConfirmDelete={() =>
+                  onDeleteListing(listing.id) && setShowMessage(false)
+                }
                 onCancelDelete={() => setShowMessage(false)}
               />
             )}

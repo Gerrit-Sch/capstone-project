@@ -1,8 +1,7 @@
 const sampleData = [
   {
     "realestates.apartmentRent": {
-      title:
-        "RestAPI - Immobilienscout24 Testobjekt! +++BITTE+++ NICHT kontaktieren - Wohnung Miete",
+      title: "RestAPI - Immobilienscout24 Testobjekt!",
       address: {
         street: "Andreas Str",
         houseNumber: "10",
@@ -230,8 +229,7 @@ const sampleData = [
 
   {
     "realestates.apartmentRent": {
-      title:
-        "RestAPI - Immobilienscout24 Testobjekt! +++BITTE+++ NICHT kontaktieren - Wohnung Miete",
+      title: "RestAPI - Immobilienscout24 Testobjekt!",
       address: {
         street: "Andreas Str",
         houseNumber: "10",

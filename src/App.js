@@ -104,7 +104,7 @@ export default function App() {
       "realestates.apartmentRent": {
         title: formData.title,
         address: { postcode: formData.postcode, city: formData.city },
-        attachments: formData.image,
+        attachments: [{ "@xlink.href": formData.image }],
       },
 
       baseRent: formData.baseRent,
@@ -116,14 +116,10 @@ export default function App() {
     setMyListings([...myListings, newListingTest]);
   }
 }
-const AppContainer = styled.div`
-  display: grid;
-  place-items: center;
-  align-content: start;
-  gap: 20px;
-  min-height: 100vh;
-  min-width: 100vw;
-  padding: 15px;
-`;
 
-/* */
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+`;

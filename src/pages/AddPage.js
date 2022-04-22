@@ -37,6 +37,7 @@ export default function AddPage({ onCreateListing }) {
 
   function onImageSave(response) {
     setImage(response.data.url);
+    setFormData({ ...formData, image: response.data.url });
   }
 
   function handleSubmit(event) {
@@ -66,6 +67,7 @@ export default function AddPage({ onCreateListing }) {
             id="title"
             placeholder="Add a title for your listing"
             onChange={handleOnChange}
+            autoComplete="off"
             required
           />
         </label>
@@ -75,6 +77,7 @@ export default function AddPage({ onCreateListing }) {
             name="baseRent"
             id="baseRent"
             placeholder="Insert the base rent"
+            autoComplete="off"
             onChange={handleOnChange}
             required
           />
@@ -86,6 +89,7 @@ export default function AddPage({ onCreateListing }) {
             id="postcode"
             maxLength="5"
             name="postcode"
+            autoComplete="off"
             type="number"
             placeholder="Insert 5-digit area code"
             onChange={handleOnChange}
@@ -96,6 +100,7 @@ export default function AddPage({ onCreateListing }) {
             id="city"
             name="city"
             type="text"
+            autoComplete="off"
             placeholder="Insert corresponding city"
             onChange={handleOnChange}
           />
@@ -107,6 +112,7 @@ export default function AddPage({ onCreateListing }) {
             name="livingSpace"
             type="number"
             placeholder="e.g 80"
+            autoComplete="off"
             onChange={handleOnChange}
             required
           />{" "}
@@ -143,4 +149,32 @@ const ButtonAdd = styled.button`
   margin: 30px;
   border: none;
   border-radius: 8px;
+`;
+
+const ImageUpload = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+  input[type="file"] {
+    opacity: 0;
+    z-index: -1;
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 0.1px;
+    height: 0.1px;
+  }
+
+  label[for="files"] {
+    position: relative;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--color-gray);
+    color: var(--color-light-gray);
+    width: 170px;
+  }
 `;

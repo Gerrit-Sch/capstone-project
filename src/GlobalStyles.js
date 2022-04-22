@@ -2,17 +2,21 @@ import { createGlobalStyle } from "styled-components";
 export default createGlobalStyle`
 * {
     box-sizing: border-box;
+    
    
   }
+ ul {
+   padding: 0;
+ }
   body {
     font-family: Poppins;
-    display: grid;
+    
+    max-width: 100%;
    
-    height: 100vh;
-  }
+    height: 100vw;
+    overflow-x: hidden;
 
-  main {
-    overflow-y:auto
+    
   }
   
 

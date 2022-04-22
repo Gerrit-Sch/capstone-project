@@ -39,7 +39,7 @@ export default function BookmarkPage({ data, handleBookmarkClick }) {
                 </p>
 
                 <p>Base rent: {listing.baseRent} € </p>
-                <p>Living space: {listing.livingSpace}: m2</p>
+                <p>Living space: {listing.livingSpace} m2</p>
               </ul>
             </Listing>
           );

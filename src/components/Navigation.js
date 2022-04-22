@@ -13,25 +13,25 @@ export default function Navigation() {
       </LinkStyled>
 
       <LinkStyled to="/bookmarked ">
-        <IconContext.Provider value={{ size: "40px" }}>
+        <IconContext.Provider value={{ size: "30px" }}>
           <GrBookmark />
         </IconContext.Provider>
       </LinkStyled>
 
       <LinkStyled to="/listings">
-        <IconContext.Provider value={{ size: "40px" }}>
+        <IconContext.Provider value={{ size: "30px" }}>
           <GrHome />
         </IconContext.Provider>
       </LinkStyled>
 
       <LinkStyled to="/add">
-        <IconContext.Provider value={{ size: "40px" }}>
+        <IconContext.Provider value={{ size: "30px" }}>
           <GrAdd />
         </IconContext.Provider>
       </LinkStyled>
 
       <LinkStyled to="/mylistings">
-        <IconContext.Provider value={{ size: "40px" }}>
+        <IconContext.Provider value={{ size: "30px" }}>
           <GrCatalog />
         </IconContext.Provider>
       </LinkStyled>
@@ -42,10 +42,10 @@ export default function Navigation() {
 const Nav = styled.nav`
   display: flex;
   justify-content: space-around;
-  height: 48px;
+  height: 36px;
 
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 
   background: white;
   position: fixed;

@@ -42,11 +42,6 @@ export default function ListingPage({
                 >
                   <GrBookmark />
                 </Bookmark>
-                <p>
-                  {listing["realestates.apartmentRent"].address.postcode}{" "}
-                  {listing["realestates.apartmentRent"].address.city}
-                </p>
-
                 <DeleteButton onClick={() => setShowMessage(true)}>
                   <GrTrash />
                 </DeleteButton>
@@ -56,6 +51,10 @@ export default function ListingPage({
                     onCancelDelete={() => setShowMessage(false)}
                   />
                 )}
+                <p>
+                  {listing["realestates.apartmentRent"].address.postcode}{" "}
+                  {listing["realestates.apartmentRent"].address.city}
+                </p>
 
                 <p>Base rent: {listing.baseRent} € </p>
                 <p>Living space: {listing.livingSpace} m2</p>
@@ -81,7 +80,8 @@ const CardList = styled.ul`
 
 const Listing = styled.li`
   display: grid;
-  grid-template-columns: 220px auto;
+  grid-template-columns: auto auto;
+  gap: 5px;
 
   background: white;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -89,7 +89,7 @@ const Listing = styled.li`
   width: auto;
   border-radius: 8px;
   position: relative;
-  padding: 12px;
+  padding: 8px;
 `;
 
 const Bookmark = styled.button`
