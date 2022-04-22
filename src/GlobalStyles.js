@@ -8,13 +8,17 @@ export default createGlobalStyle`
  ul {
    padding: 0;
  }
+
+ 
+
+
   body {
     font-family: Poppins;
     
-    max-width: 100%;
+     max-width: 100%;
    
-    height: 100vw;
-    overflow-x: hidden;
+     height: 100vw;
+     overflow-x: hidden;
 
     
   }

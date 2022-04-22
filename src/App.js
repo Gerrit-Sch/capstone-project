@@ -19,7 +19,7 @@ export default function App() {
   });
   const [areaCode, setAreaCode] = useState("");
   const [data, setData] = useLocalStorage("updatedData", updatedData);
-  const [myListings, setMyListings] = useState([]);
+  const [myListings, setMyListings] = useLocalStorage("data", []);
 
   return (
     <AppContainer

@@ -38,9 +38,10 @@ export default function MyListingsPage({
             </DeleteButton>
             {showMessage && (
               <DeleteMessage
-                onConfirmDelete={() =>
-                  onDeleteListing(listing.id) && setShowMessage(false)
-                }
+                onConfirmDelete={() => {
+                  onDeleteListing(listing.id);
+                  setShowMessage(false);
+                }}
                 onCancelDelete={() => setShowMessage(false)}
               />
             )}
