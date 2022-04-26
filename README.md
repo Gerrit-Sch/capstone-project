@@ -2,8 +2,8 @@
 
 ## Tech Stack
 
-    React
-    React Hooks
+- React
+- React Hooks
     React Router
     React Testing Library / Jest
     JavaScript
