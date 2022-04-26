@@ -5,9 +5,9 @@ You can bookmark the ones you like best, delete the ones you don't consider top 
 
 ### App impressions
 
-![Screenshot 2022-04-26 at 11 29 07](https://user-images.githubusercontent.com/98734377/165269325-24c7b02c-c2ba-495f-b83e-a16c134c112c.png)
+<img src="https://user-images.githubusercontent.com/98734377/165269325-24c7b02c-c2ba-495f-b83e-a16c134c112c.png" alt="LandingPage" width="187.5" height="333.5">
 
-![Screenshot 2022-04-26 at 11 28 56](https://user-images.githubusercontent.com/98734377/165269418-48fa727e-d8cb-4ec7-b791-16102835c6c5.png)#
+![Screenshot 2022-04-26 at 11 28 56](https://user-images.githubusercontent.com/98734377/165269418-48fa727e-d8cb-4ec7-b791-16102835c6c5.png)
 
 ![Screenshot 2022-04-26 at 11 28 37](https://user-images.githubusercontent.com/98734377/165269497-39fa3fe0-5ea4-4b34-a018-21d50f71d971.png)
 
